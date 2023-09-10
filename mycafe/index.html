@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Order Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-image: url("bg.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            z-index: -1;
+            /* font: bold italic; */
+            /* filter:blur(5px) */
+        }
+    
+        h1 {
+            text-align: center;
+        }
+    
+        form {
+            background-color: #dfe2be;
+            padding: 20px;
+            border-radius: 30px;
+            /* border: solid grey 10px; */
+            border: 3px solid black;
+
+        }
+    
+        label {
+            display: block;
+            margin-top: 10px;
+            font-size: 1.1em; /* Slightly larger font size for readability */
+            color: #333; /* Darker color for better contrast */
+        }
+    
+        input[type="text"], input[type="tel"], select {
+            width: 95%;
+            padding: 10px; /* Increase padding for a more spacious look */
+            margin-top: 5px;
+            border: 1px solid #ccc; /* Light border for input fields */
+            border-radius: 10px; /* Rounded corners for input fields */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for a lifted effect */
+            border: 3px solid black;
+        }
+    
+        input[type="text"]:focus, input[type="tel"]:focus, select:focus {
+            background-color: rgb(248, 208, 107) ; /* Green border on focus */
+            outline: none; /* Remove default outline */
+        }
+    
+        .menu-section {
+            margin-top: 20px;
+        }
+    
+        .menu-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+    
+        .menu-item label {
+            flex: 1; /* Make label take available space */
+        }
+    
+        .menu-item input[type="number"] {
+            width: 80px; /* Slightly larger width for better usability */
+            margin-left: 10px;
+            padding: 5px; /* Increase padding for input fields */
+            /* border: 1px solid #ccc; Light border for input fields */
+            border-radius: 5px; /* Rounded corners for input fields */
+            border: 3px solid black;
+
+        }
+    
+        .buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+    
+        button {
+            padding: 12px 24px; /* Increase padding for buttons */
+            margin: 0 10px;
+            background-color: #4CAF50;
+            border-radius: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            color: white; /* Ensure button text is readable */
+            border: none; /* Remove default border */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+    
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    
+        #success-message {
+            display: none;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px; /* Rounded corners for message box */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for lifted effect */
+        }
+    
+        .top {
+            color: white;
+            font-size: 70px;
+            font-style: italic;
+            border: solid darkgoldenrod 10px;
+            border-radius: 60px;
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(207,196,71,1) 61%, rgba(154,255,0,1) 87%);
+            padding: 20px; /* Add padding to ensure text is well-spaced */
+        }
+    </style>
+    </head>
+<body>
+    <div class="header-image">
+        <h1 class="top">Cafe Order Form</h1>
+    </div>
+    <form id="orderForm" method="post" action="submit_order.php">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="contact">Contact:</label>
+        <input type="tel" id="contact" name="contact" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="tbno">Table Number (optional):</label>
+        <input type="text" id="tbno" name="tbno">
+
+        <label for="od">Order Type:</label>
+        <select id="od" name="od" required>
+            <option value="order">Order</option>
+            <option value="parcel">Parcel</option>
+        </select>
+
+        <div class="menu-section">
+            <h2>Beverages</h2>
+            <div class="menu-item">
+                <label for="smoothies">Smoothies:</label>
+                <input type="number" id="smoothies" name="smoothies" min="0" value="0">
+            </div>
+            <div class="menu-item">
+                <label for="coffee">Coffee:</label>
+                <input type="number" id="coffee" name="coffee" min="0" value="0">
+            </div>
+            <div class="menu-item">
+                <label for="icoffee">Iced Coffee:</label>
+                <input type="number" id="icoffee" name="icoffee" min="0" value="0">
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2>Desserts</h2>
+            <div class="menu-item">
+                <label for="waffles">Waffles:</label>
+                <input type="number" id="waffles" name="waffles" min="0" value="0">
+            </div>
+            <div class="menu-item">
+                <label for="oatmeal">Oatmeal:</label>
+                <input type="number" id="oatmeal" name="oatmeal" min="0" value="0">
+            </div>
+            <div class="menu-item">
+                <label for="pancakes">Pancakes:</label>
+                <input type="number" id="pancakes" name="pancakes" min="0" value="0">
+            </div>
+        </div>
+            <br><hr><br>
+        <div class="buttons">
+            <button type="submit">Submit Order</button>
+            <button type="reset">Clear Form</button>
+        </div>
+    </form>
+    <br>
+    <div id="success-message">
+        <h2>🎉 Order Placed Successfully! 🎉</h2>
+        <p>Thank you for your order!</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if the 'submitted' cookie is set
+            const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
+                const [name, value] = cookie.split('=');
+                acc[name] = value;
+                return acc;
+            }, {});
+
+            if (cookies.submitted) {
+                const messageType = cookies.submitted === 'true' ? 'success' : 'error';
+                const messageElement = document.getElementById(`${messageType}-message`);
+
+                if (messageElement) {
+                    messageElement.style.display = 'block';
+                    messageElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+
+                // Clear the cookie after displaying the message
+                document.cookie = "submitted=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            }
+        });
+    </script>
+    
+</body>
+</html>
